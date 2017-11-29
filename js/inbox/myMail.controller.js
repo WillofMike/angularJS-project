@@ -4,7 +4,7 @@
   function myMail ($http){
     const vm = this;
 
-  $http.get("http://localhost:8082/api/messages")
+  $http.get("https://mike-ng-server.herokuapp.com/api/messages")
     .then(function(res){
       vm.mail =res.data._embedded.messages
       console.log(vm.mail);

@@ -5,8 +5,7 @@
     const vm = this;
 
     mail.getmail()
-
-    .then(function(res){
+      .then(function(res){
       vm.mail =res.data._embedded.messages
     })
 

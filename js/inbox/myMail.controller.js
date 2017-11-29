@@ -6,7 +6,7 @@
 
     mail.getmail()
       .then(function(res){
-      vm.mail =res.data._embedded.messages
+      vm.getMail =res.data._embedded.messages
     })
 
     app.service('mainSvc', function($http){

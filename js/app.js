@@ -1,3 +1,3 @@
 (function(){
-  angular.module('angularProject', [])
+  var app = angular.module('angularProject', ['ui.router'])
 })()

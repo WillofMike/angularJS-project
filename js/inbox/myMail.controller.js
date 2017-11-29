@@ -1,19 +1,27 @@
 (function(){
   var app = angular.module('angularProject').controller('myMail', myMail);
 
-  function myMail (mainSvc){
+  function myMail ($http){
     const vm = this;
 
-    mainSvc.mail()
-      .then(function(res){
-      vm.mail =res.data._embedded.messages
+    $http.get("https://mike-ng-server.herokuapp.com/api/messages").then((res)=>{
+      vm.mail = res.data._embedded.messages
     })
+
+
+    vm.star = function(id, bool){
+      console.log('hi');
+      let data = {
+        "messageIds": [id],
+        "command": "star",
+        "star": bool
+      }
+      $http.patch('https://mike-ng-server.herokuapp.com/api/messages', data).then(()=> {
+        $http.get("https://mike-ng-server.herokuapp.com/api/messages").then((res)=>{
+          vm.mail = res.data._embedded.messages
+        })
+      })
+    }
   }
 
-    app.service('mainSvc', function($http){
-      const vm = this;
-      vm.mail = function() {
-        return $http.get("https://mike-ng-server.herokuapp.com/api/messages")
-      }
-    })
 })()

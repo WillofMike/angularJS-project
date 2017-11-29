@@ -8,6 +8,7 @@
       .then(function(res){
       vm.mail =res.data._embedded.messages
     })
+  }
 
     app.service('mainSvc', function($http){
       const vm = this;
@@ -15,5 +16,4 @@
         return $http.get("https://mike-ng-server.herokuapp.com/api/messages")
       }
     })
-  }
 })()

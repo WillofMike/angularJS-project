@@ -4,14 +4,14 @@
   function myMail (mainSvc){
     const vm = this;
 
-    mail.getmail()
+    mainSvc.mail()
       .then(function(res){
-      vm.getMail =res.data._embedded.messages
+      vm.mail =res.data._embedded.messages
     })
 
     app.service('mainSvc', function($http){
       const vm = this;
-      vm.getMail = function() {
+      vm.mail = function() {
         return $http.get("https://mike-ng-server.herokuapp.com/api/messages")
       }
     })

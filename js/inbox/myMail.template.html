@@ -1,16 +1,16 @@
 <div ng-controller="myMail as ctrl">
 <tool-bar mail="ctrl.mail"></tool-bar>
-<div ng-repeat="mail in ctrl.mail" class="row message read-{{mail.read}} selected-{{mail.selected}}">
+<div ng-repeat="mail in ctrl.mail" class="row message read-{{mail.isRead}} selected-{{mail.selected}}">
   <div class="col-xs-1">
     <div class="row">
       <div class="col-xs-2">
         <input ng-model="mail.selected" type="checkbox" />
       </div>
-      <div class="col-xs-2" ng-if="mail.starred == true">
-           <i class="star fa fa-star" ng-click="ctrl.star(mail.id, false)"></i>
+      <div class="col-xs-2" ng-if="mail.isStarred == true">
+           <i class="star fa fa-star" ng-click="ctrl.star(mail._id, false)"></i>
          </div>
-         <div class="col-xs-2" ng-if="mail.starred == false">
-           <i class="star fa fa-star-o" ng-click="ctrl.star(mail.id, true)"></i>
+         <div class="col-xs-2" ng-if="mail.isStarred == false">
+           <i class="star fa fa-star-o" ng-click="ctrl.star(mail._id, true)"></i>
          </div>
     </div>
   </div>

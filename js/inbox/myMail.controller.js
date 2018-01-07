@@ -4,21 +4,22 @@
   function myMail ($http){
     const vm = this;
 
-    $http.get("https://mike-ng-server.herokuapp.com/api/messages").then((res)=>{
-      vm.mail = res.data._embedded.messages
+    $http.get("http://localhost:8000/emails").then((res)=> {
+      console.log('the emails', res)
+      vm.mail = res.data
     })
 
-
-    vm.star = function(id, bool){
+// https://mike-ng-server.herokuapp.com/api/messages this is for the hyperapi
+    vm.star = function(id, bool) {
       console.log('hi');
       let data = {
-        "messageIds": [id],
-        "command": "star",
-        "star": bool
+        // "messageIds": [id],
+        // "command": "star",
+        "isStarred": bool
       }
-      $http.patch('https://mike-ng-server.herokuapp.com/api/messages', data).then(()=> {
-        $http.get("https://mike-ng-server.herokuapp.com/api/messages").then((res)=>{
-          vm.mail = res.data._embedded.messages
+      $http.put('http://localhost:8000/emails', data).then(()=> {
+        $http.get("http://localhost:8000/emails").then((res)=>{
+          vm.mail = res.data
         })
       })
     }
